@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candle Stick Chart Pattern Recognication</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Candle Stick Chart Pattern Recognition</h1>
+    <form action="">
+        <select name="pattern">
+            {% for pattern in patterns %}
+                <option value="{{ pattern }}">{{ patterns[pattern] }}</option>
+            {% endfor %}
+            <input type="submit" value="Run">
+        </select>
+    </form>
+    <div>Everything goes here</div>
+</body>
+</html>

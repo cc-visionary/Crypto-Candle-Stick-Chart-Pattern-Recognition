@@ -2,4 +2,5 @@ pandas
 requests
 flask
 TA-Lib
-yfinance
+cufflinks
+plotly

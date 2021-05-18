@@ -3,7 +3,7 @@ import cufflinks as cf
 import talib
 import requests
 import os
-from datetime import datetime as dt, timedelta
+from datetime import datetime as dt
 from patterns import patterns
 from flask import Flask, render_template, request
 

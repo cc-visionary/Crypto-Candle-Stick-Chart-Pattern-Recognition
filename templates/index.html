@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="import" href="./charts/shiba-inu.html">
     <title>Candle Stick Chart Pattern Recognication</title>
     <style>
         body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
             text-align: center;
+            font-size: 12px;
             margin: 20px;
+        }
+
+        table { 
+            margin: auto;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        .bullish {
+            background-color: green;
+        }
+
+        .bearish {
+            background-color: red;
         }
     </style>
 </head>
@@ -17,11 +36,49 @@
     <form action="">
         <select name="pattern">
             {% for pattern in patterns %}
-                <option value="{{ pattern }}">{{ patterns[pattern] }}</option>
+                <option value="{{ pattern }}" {% if current_pattern == pattern %} selected='selected' {% endif %} %}>{{ patterns[pattern] }}</option>
             {% endfor %}
             <input type="submit" value="Run">
         </select>
     </form>
-    <div>Everything goes here</div>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Logo</th>
+            <th>ID</th>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>24H High</th>
+            <th>Current Price</th>
+            <th>24H Low</th>
+            <th>Price Change 24H ($)</th>
+            <th>Price Change 24H (%)</th>
+            <th>Market Cap</th>
+            <th>Pattern</th>
+            <th>Last Updated</th>
+        </tr>
+        {% for key, values in coins.items() %}
+            <tr>
+                <td>{{ values['market_cap_rank'] }}</td>
+                <td><img height='25' width='25' src="{{ values['image'] }}" /></td>
+                <td>{{ key }}</td>
+                <td>{{ values['symbol'] }}</td>
+                <td>{{ values['name'] }}</td>
+                <td>{{ values['high_24h'] }}</td>
+                <td>{{ values['current_price'] }}</td>
+                <td>{{ values['low_24h'] }}</td>
+                <td>{{ values['price_change_24h'] }}</td>
+                <td>{{ values['price_change_percentage_24h'] }}</td>
+                <td>{{ values['market_cap'] }}</td>
+                <td class="{{ values['pattern'] }}">{{ values['pattern'] }}</td>
+                <td>{{ values['last_updated'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="13">
+                    <img src="{{url_for('static', filename='/charts/' + key + '.png')}}" >
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
